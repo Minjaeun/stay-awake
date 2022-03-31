@@ -5,7 +5,6 @@ var isRunning = false;
 
 function countTimers() {
     timersCount++;
-    
     if (isRunning) {
         return;
     }
@@ -36,13 +35,14 @@ function countTimers() {
 
     document.getElementById("countTimers").innerHTML = timersCount;
 
+}
 
-    document.getElementById('pause').addEventListener('click', function () {
-        pause = true;
-    });
-
-    document.getElementById('resume').addEventListener('click', function () {
+function togglePause() {
+    if (pause) {
         pause = false;
-    });
+    }
+    else {
+        pause = true;
+    }
 }
 
