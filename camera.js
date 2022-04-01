@@ -1,19 +1,30 @@
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+var isRunning = false;
 
-        //var constraints = { video: { facingMode: { exact: "environment" }, width: { exact: 395 }, height: { exact: 395 } }, audio: false };
-function startCam() {
-        var constraints = { audio: false, video: true };
+var constraints = { audio: false, video: true };
+var video = document.getElementById("videoInput");
 
-        var video = document.getElementById("videoInput");
+function toggleCam() {
+    if (video.paused) {
+        startCam(video);
+    }
+    else {
+        pauseCam();
+    }
+}
 
-        function successCallback(stream) {
-            video.srcObject = stream;
-            video.play();
-        }
+function startCam(video) {
+    function successCallback(stream) {
+        video.srcObject = stream;
+        video.play();
+    }
 
-        function errorCallback(error) {
-            console.log(error);
-        }
-navigator.getUserMedia(constraints, successCallback, errorCallback);
+    function errorCallback(error) {
+        console.log(error);
+    }
+    navigator.getUserMedia(constraints, successCallback, errorCallback);
+}
 
+function pauseCam() {
+    video.pause();
 }
