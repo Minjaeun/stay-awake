@@ -10,7 +10,7 @@ class User {
     }
 }
 
-function creatUser(id, name, group){
+function createUser(id, name, group){
     var user = new User();
     user.id = id;
     user.name = name;
