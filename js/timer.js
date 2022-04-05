@@ -1,4 +1,4 @@
-var pause = true; //is timer paused
+var pause = true;
 var isRunning = false;
 var count = 0;
 
@@ -9,26 +9,18 @@ function countTimers() {
     setInterval(timer, 1000);
 
     function timer() {
-        if (!pause) { //do something if not paused
+        if (!pause) { 
             count = count + 1;
-            /* if (count < 0) {
-               clearInterval(counter);
-               setTimeout(countTimers, 5000); //start count from 26 again
-               return;
-             } */
+           
             var hours = Math.floor((count % (60 * 60 * 24)) / (60 * 60));
             var minutes = Math.floor((count % (60 * 60)) / 60);
             var seconds = Math.floor(count % 60);
 
-            // Output the result in an element with id="demo"
             document.getElementById("timer").innerHTML = hours + ": "
                 + minutes + ": " + seconds;
 
-            //document.getElementById("timer").innerHTML = count;
         }
     }
-
-    //document.getElementById("countTimers").innerHTML = timersCount;
 
 }
 
