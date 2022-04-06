@@ -22,7 +22,7 @@ function startCam(video) {
     function errorCallback(error) {
         console.log(error);
     }
-    navigator.getUserMedia(constraints, successCallback, errorCallback);
+    navigator.mediaDevices.getUserMedia(constraints, successCallback, errorCallback);
 }
 
 function pauseCam() {
