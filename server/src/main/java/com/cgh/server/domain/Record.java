@@ -1,18 +1,17 @@
 package com.cgh.server.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
-public class Record implements Serializable {
+public class Record {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long subject;
+    @OneToOne
+    private Subject subject;
 
     private int time;
 
