@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stay Awake</title>
-  <link rel="stylesheet" href="main.css">
-  <link rel="icon" href="./img/favicon/favicon.ico" type="image/x-icon" sizes="16x16">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Home</title>
 </head>
 <h1>Stay Awake</h1>
-
 <body>
-  <button onclick="location.href='./room.html'">Go to study room</button>
+<p>Click <a th:href="@{/login}">로그인</a> to see a greeting.</p>
 </body>
 
 </html>
