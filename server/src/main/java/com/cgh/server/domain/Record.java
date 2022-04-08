@@ -1,10 +1,12 @@
 package com.cgh.server.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-public class Record {
+public class Record implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,5 +16,5 @@ public class Record {
 
     private int time;
 
-    private Date date;
+    private LocalDateTime date;
 }
