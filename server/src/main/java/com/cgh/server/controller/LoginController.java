@@ -1,6 +1,7 @@
 package com.cgh.server.controller;
 
 import com.cgh.server.domain.User;
+import com.cgh.server.service.LoginService;
 import com.cgh.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
     @Autowired
+    LoginService loginService;
+    @Autowired
     UserService userService;
 
     @GetMapping("")
-    public String login() {
+    public String login(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
         return "login";
+    }
+
+    @PostMapping("")
+    public String login(User user) {
+        if (loginService.existsByNameAndPassword(user.getName(), user.getPassword())) {
+            return "redirect:/home";
+        } else {
+            return "redirect:/login";
+        }
     }
 
     @GetMapping("/signup")
