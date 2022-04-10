@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-  
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stay Awake</title>
-  <link rel="stylesheet" href="main.css">
-  <link rel="icon" href="../img/favicon/favicon.ico" type="image/x-icon" sizes="16x16">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Awake</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
 <h1>Stay Awake</h1>
 
 <body>
-  <video id="videoInput" width="500" height="400"></video>
-  <br>
-  <button id="start" onclick="toggleCam();togglePause();">공부시작</button>
-  <span id="timer"></span>
+<video id="videoInput" width="500" height="400"></video>
+<br>
+<div layout:fragment="content">
+    <button type="button" th:onclick="'javascript:startCam()'">공부 시작</button>
+    <button type="button" th:onclick="'javascript:pauseCam()'">일시 정지</button>
+    <span id="timer"></span>
+    <script type="text/javascript" th:src="@{/js/camera.js}"></script>
+    <script type="text/javascript" th:src="@{/js/timer.js}"></script>
+
+</div>
+
+
 </body>
 
-<script src='../js/camera.js'></script>
-<script src='../js/timer.js'></script>
 
 </html>
