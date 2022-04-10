@@ -17,7 +17,7 @@ function startCam() {
         console.log(error);
     }
 
-    navigator.getUserMedia(constraints, successCallback, errorCallback);
+    navigator.mediaDevices.getUserMedia(constraints, successCallback, errorCallback);
 }
 
 function pauseCam() {
