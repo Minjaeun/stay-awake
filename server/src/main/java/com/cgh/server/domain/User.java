@@ -25,9 +25,6 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Record.class)
     private List<Record> records = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<User> friends = new ArrayList<>();
-
     public User(String name, String password) {
         this.name = name;
         this.password = password;
@@ -85,11 +82,4 @@ public class User {
         this.records = records;
     }
 
-    public List<User> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(List<User> friends) {
-        this.friends = friends;
-    }
 }
