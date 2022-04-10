@@ -15,8 +15,8 @@
 <video id="videoInput" width="500" height="400"></video>
 <br>
 <div layout:fragment="content">
-    <button type="button" th:onclick="'javascript:startCam()'">공부 시작</button>
-    <button type="button" th:onclick="'javascript:pauseCam()'">일시 정지</button>
+    <button type="button" th:onclick="'javascript:startCam(),startTimer()'">공부 시작</button>
+    <button type="button" th:onclick="'javascript:pauseCam(),pauseTimer()'">일시 정지</button>
     <span id="timer"></span>
     <script type="text/javascript" th:src="@{/js/camera.js}"></script>
     <script type="text/javascript" th:src="@{/js/timer.js}"></script>
