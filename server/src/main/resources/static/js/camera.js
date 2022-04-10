@@ -2,6 +2,8 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 
 var constraints = {audio: false, video: true};
 
+startCam();
+
 function startCam() {
 
     const video = document.getElementById("videoInput");
