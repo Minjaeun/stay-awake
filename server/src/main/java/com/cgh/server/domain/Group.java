@@ -15,6 +15,6 @@ public class Group {
     @Getter
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = User.class)
-    private List<User> participants;
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Member.class)
+    private List<Member> participants;
 }
