@@ -1,24 +1,24 @@
 package com.cgh.server.service;
 
-import com.cgh.server.domain.User;
-import com.cgh.server.repository.UserRepository;
+import com.cgh.server.domain.Member;
+import com.cgh.server.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class LoginService {
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
-    public LoginService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public LoginService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     public boolean existsByNameAndPassword(String name, String password) {
-        return userRepository.existsByNameAndPassword(name, password);
+        return memberRepository.existsByUsernameAndPassword(name, password);
     }
 
-    public Optional<User> findByNameAndPassword(String name, String password) {
-        return userRepository.findByNameAndPassword(name, password);
+    public Optional<Member> findByNameAndPassword(String name, String password) {
+        return memberRepository.findByUsernameAndPassword(name, password);
     }
 }
