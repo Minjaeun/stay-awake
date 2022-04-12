@@ -1,12 +1,27 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Landing Page</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
 </head>
-<h1>Stay Awake</h1>
 <body>
-<p>Click <a th:href="@{/login}">로그인</a> to see a greeting.</p>
-</body>
+<div class="container">
+    <div class="my-4">
+        <h1>Stay Awake</h1>
 
+        <div class="btn">
+            <a th:href="@{/login/signup}">
+                <button class="btn btn-lg btn-secondary">회원가입</button>
+            </a>
+            <a th:href="@{/login}">
+                <button sec:authorize="!isAuthenticated()" class="btn btn-lg btn-dark">로그인</button>
+            </a>
+            <!--TODO: logout 구현-->
+            <a th:href="@{/logout}">
+                <button sec:authorize="isAuthenticated()" class="btn btn-danger btn-lg">로그아웃</button>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
 </html>
