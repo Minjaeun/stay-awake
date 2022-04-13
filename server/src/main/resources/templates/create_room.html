@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new room</title>
+</head>
+<body>
+<form action="/login" method="post" th:object="${room}">
+    <input type="text" name="username" placeholder="아이디" th:field="*{name}">
+    <input type="password" name="password" placeholder="비밀번호" th:field="*{password}">
+    <button type="submit">로그인</button>
+    <p><a th:href="@{/login/signup}">회원가입 하기</a></p>
+</form>
+</body>
+</html>
