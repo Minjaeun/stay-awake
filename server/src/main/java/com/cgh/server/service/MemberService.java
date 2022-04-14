@@ -1,5 +1,6 @@
 package com.cgh.server.service;
 
+import com.cgh.server.domain.Group;
 import com.cgh.server.domain.Member;
 import com.cgh.server.domain.Role;
 import com.cgh.server.repository.MemberRepository;
@@ -13,11 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements UserDetailsService {
+public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
-    public UserService(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
         memberRepository.save(new Member("admin", new BCryptPasswordEncoder().encode("1234"), Role.ROLE_ADMIN));
     }
@@ -47,5 +48,9 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("user not found");
         }
         return member;
+    }
+
+    public List<Member> findByGroup(Group group) {
+        return memberRepository.findMemberByGroup(group);
     }
 }
