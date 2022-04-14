@@ -1,7 +1,5 @@
 package com.cgh.server.domain;
 
-import lombok.Getter;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,9 +10,32 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @Getter
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Member.class)
-    private List<Member> participants;
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Member.class)
+    private List<Member> members;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
+    }
 }

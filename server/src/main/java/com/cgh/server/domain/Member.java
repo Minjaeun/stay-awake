@@ -21,7 +21,7 @@ public class Member implements UserDetails {
     @Column(nullable = false)
     private String username;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Group.class)
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Group.class)
     private List<Group> groups = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Subject.class)
