@@ -5,7 +5,7 @@ import com.cgh.server.domain.Role;
 import com.cgh.server.domain.dto.LoginRequest;
 import com.cgh.server.domain.dto.RegistryRequest;
 import com.cgh.server.service.LoginService;
-import com.cgh.server.service.UserService;
+import com.cgh.server.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class LoginController {
     @Autowired
     LoginService loginService;
     @Autowired
-    UserService userService;
+    MemberService memberService;
     private final BCryptPasswordEncoder passwordEncoder;
 
     public LoginController() {
@@ -47,7 +47,7 @@ public class LoginController {
     @PostMapping("/signup")
     public String signup(@ModelAttribute RegistryRequest registryRequest) {
         Member member = new Member(registryRequest.getUsername(), passwordEncoder.encode(registryRequest.getPassword()));
-        userService.save(member);
+        memberService.save(member);
         return "redirect:/login";
     }
 
