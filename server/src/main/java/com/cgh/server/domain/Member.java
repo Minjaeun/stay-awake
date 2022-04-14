@@ -21,14 +21,17 @@ public class Member implements UserDetails {
     @Column(nullable = false)
     private String username;
 
-    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Group.class)
-    private List<Group> groups = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Group.class)
+    private Group group;
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Subject.class)
     private List<Subject> subjects = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Record.class)
     private List<Record> records = new ArrayList<>();
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public Member(String username, String password) {
         this.username = username;
@@ -46,6 +49,14 @@ public class Member implements UserDetails {
         this.role = role;
     }
 
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -53,9 +64,6 @@ public class Member implements UserDetails {
     public void setRole(Role role) {
         this.role = role;
     }
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
     public Long getId() {
         return id;
@@ -104,14 +112,6 @@ public class Member implements UserDetails {
 
     public void setUsername(String name) {
         this.username = name;
-    }
-
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
     }
 
     public List<Subject> getSubjects() {

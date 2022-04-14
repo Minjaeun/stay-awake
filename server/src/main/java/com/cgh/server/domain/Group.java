@@ -1,7 +1,6 @@
 package com.cgh.server.domain;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Group {
@@ -12,8 +11,8 @@ public class Group {
 
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Member.class)
-    private List<Member> members;
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Member.class)
+    private Member member;
 
     public String getId() {
         return id;
@@ -31,11 +30,13 @@ public class Group {
         this.name = name;
     }
 
-    public List<Member> getMembers() {
-        return members;
+
+    public Member getMember() {
+        return member;
     }
 
-    public void setMembers(List<Member> members) {
-        this.members = members;
+    public void setMember(Member member) {
+        this.member = member;
     }
+
 }
