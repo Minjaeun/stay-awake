@@ -16,7 +16,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findByUsernameAndPassword(String name, String password);
 
-    List<Member> findMemberByGroup(Team team);
+    List<Member> findMemberByTeam(Team team);
 
     boolean existsByUsernameAndPassword(String name, String password);
 

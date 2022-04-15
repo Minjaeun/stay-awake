@@ -1,6 +1,6 @@
 package com.cgh.server.service;
 
-import com.cgh.server.domain.Group;
+import com.cgh.server.domain.Team;
 import com.cgh.server.domain.Member;
 import com.cgh.server.domain.Role;
 import com.cgh.server.repository.MemberRepository;
@@ -21,6 +21,10 @@ public class MemberService implements UserDetailsService {
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
         memberRepository.save(new Member("admin", new BCryptPasswordEncoder().encode("1234"), Role.ROLE_ADMIN));
+    }
+
+    public Optional<Member> findByUsername(String username){
+        return memberRepository.findByUsername(username);
     }
 
     public List<Member> findAll() {
@@ -50,7 +54,7 @@ public class MemberService implements UserDetailsService {
         return member;
     }
 
-    public List<Member> findByGroup(Group group) {
-        return memberRepository.findMemberByGroup(group);
+    public List<Member> findByTeam(Team team) {
+        return memberRepository.findMemberByTeam(team);
     }
 }
