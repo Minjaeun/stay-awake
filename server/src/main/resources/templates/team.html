@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Stay Awake</title>
+</head>
+<h1>Group</h1>
+<body>
+<table class="tb_col">
+    <tr>
+        <p><a th:href="@{team/join}">팀 참가</a></p>
+        <th>ID</th>
+        <th>name</th>
+    </tr>
+    <tr th:each="g : ${team}">
+        <td th:text="*{g.getId()}"></td>
+        <td><a th:text="*{g.getName()}" th:href="@{'/team/'+*{g.getId()}}"></a></td>
+    </tr>
+</table>
+
+</body>
+
+</html>
