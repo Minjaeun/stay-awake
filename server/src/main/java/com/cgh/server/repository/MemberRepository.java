@@ -1,6 +1,6 @@
 package com.cgh.server.repository;
 
-import com.cgh.server.domain.Group;
+import com.cgh.server.domain.Team;
 import com.cgh.server.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,7 +16,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findByUsernameAndPassword(String name, String password);
 
-    List<Member> findMemberByGroup(Group group);
+    List<Member> findMemberByGroup(Team team);
 
     boolean existsByUsernameAndPassword(String name, String password);
 

@@ -21,8 +21,8 @@ public class Member implements UserDetails {
     @Column(nullable = false)
     private String username;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Group.class)
-    private Group group;
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Team.class)
+    private Team team;
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Subject.class)
     private List<Subject> subjects = new ArrayList<>();
@@ -49,20 +49,20 @@ public class Member implements UserDetails {
         this.role = role;
     }
 
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
-
     public Role getRole() {
         return role;
     }
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public Long getId() {

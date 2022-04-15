@@ -3,7 +3,7 @@ package com.cgh.server.domain;
 import javax.persistence.*;
 
 @Entity
-public class Group {
+public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
