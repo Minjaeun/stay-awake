@@ -6,6 +6,7 @@ import com.cgh.server.repository.TeamRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TeamService {
@@ -16,10 +17,13 @@ public class TeamService {
         this.teamRepository = teamRepository;
     }
 
-    public List<Team> findByMember(Member member){
+    public List<Team> findByMember(Member member) {
         return teamRepository.findByMember(member);
     }
 
+    public Optional<Team> findById(String id) {
+        return teamRepository.findById(id);
+    }
 
 
     public void save(Team team) {
