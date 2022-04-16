@@ -1,6 +1,7 @@
 package com.cgh.server.controller;
 
 import com.cgh.server.domain.Member;
+import com.cgh.server.domain.Team;
 import com.cgh.server.service.MemberService;
 import com.cgh.server.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +34,25 @@ public class TeamController {
         return "team";
     }
 
-    @GetMapping("")
-    public String loadInfo(@RequestParam Long roomId, Model model) {
-         //TODO: 팀 정보 로딩 구현
-        return "team_info";
+    @GetMapping("/create")
+    public String createTeam(Model model) {
+        model.addAttribute("team",new Team());
+        return "team_create";
     }
 
-    @PostMapping("/{roomId")
-    public String createGroup(@RequestParam Long roomId) {
+    @PostMapping("/create")
+    public String create(Team team, @AuthenticationPrincipal User user){
+        if(memberService.findByUsername(user.getUsername()).isPresent()){
+            team.setMember(memberService.findByUsername(user.getUsername()).get());
+        }
+        teamService.save(team);
+        return "redirect:/team";
+    }
+
+    @PostMapping("/{id}")
+    public String createGroup(@RequestParam Long id, Model model) {
         //TODO: 팀 생성 구현
-        return "group";
+        return "team_info";
     }
 
 }
