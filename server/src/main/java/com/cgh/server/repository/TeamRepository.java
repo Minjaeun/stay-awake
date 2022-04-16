@@ -15,6 +15,6 @@ public interface TeamRepository extends JpaRepository<Team, String> {
 
     //List<Group> findGroupByMember(Member member);
 
-    List<Team> findByMember(Member member);
+    List<Team> findAllByMember(Member member);
 
 }

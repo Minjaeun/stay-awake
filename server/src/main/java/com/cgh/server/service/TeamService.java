@@ -17,8 +17,8 @@ public class TeamService {
         this.teamRepository = teamRepository;
     }
 
-    public List<Team> findByMember(Member member) {
-        return teamRepository.findByMember(member);
+    public List<Team> findAllByMember(Member member) {
+        return teamRepository.findAllByMember(member);
     }
 
     public Optional<Team> findById(String id) {
