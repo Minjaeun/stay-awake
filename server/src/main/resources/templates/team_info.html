@@ -9,6 +9,14 @@
     <h2>team ID: <span th:text="*{getId()}"></span></h2>
     <h2>team name: <span th:text="*{getName()}"></span></h2>
 </div>
+<table class="tb_col">
+    <tr>
+        <th>team members</th>
+    </tr>
+    <tr th:each="m : ${members}">
+        <td><a th:text="*{m.getUsername()}"></a></td>
+    </tr>
+</table>
 
 </body>
 </html>
