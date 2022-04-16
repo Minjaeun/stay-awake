@@ -2,6 +2,7 @@ package com.cgh.server.controller;
 
 import com.cgh.server.domain.Member;
 import com.cgh.server.domain.Team;
+import com.cgh.server.domain.dto.TeamDto;
 import com.cgh.server.service.MemberService;
 import com.cgh.server.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,22 @@ public class TeamController {
     MemberService memberService;
 
     @GetMapping("")
-    public String group(Model model, @AuthenticationPrincipal User user) {
+    public String team(Model model, @AuthenticationPrincipal User user) {
         if (memberService.findByUsername(user.getUsername()).isPresent()) {
             Member member = memberService.findByUsername(user.getUsername()).get();
-            if (!teamService.findByMember(member).isEmpty()) {
-                model.addAttribute("team", teamService.findByMember(member));
+            if (!teamService.findAllByMember(member).isEmpty()) {
+                model.addAttribute("team", teamService.findAllByMember(member));
             }
         }
         return "team";
+    }
+
+    @GetMapping("/{id}")
+    public String loadTeam(@PathVariable("id") String id, Model model) {
+        Team team = teamService.findById(id).get();
+        model.addAttribute("team", team);
+        model.addAttribute("members", memberService.findMemberByTeam(team));
+        return "team_info";
     }
 
     @GetMapping("/create")
@@ -39,17 +48,39 @@ public class TeamController {
 
     @PostMapping("/create")
     public String create(Team team, @AuthenticationPrincipal User user) {
+        Member member;
         if (memberService.findByUsername(user.getUsername()).isPresent()) {
-            team.setMember(memberService.findByUsername(user.getUsername()).get());
+            member = memberService.findByUsername(user.getUsername()).get();
+            team.setMember(member);
+            teamService.save(team);
+            member.setTeam(team);
+            memberService.save(member);
         }
-        teamService.save(team);
         return "redirect:/team";
     }
 
-    @GetMapping("/{id}")
-    public String loadInfo(@PathVariable("id") String id, Model model) {
-        model.addAttribute("team", teamService.findById(id).get());
-        return "team_info";
+    @GetMapping("/join")
+    public String joinTeam(Model model) {
+        TeamDto teamDto = new TeamDto();
+        model.addAttribute("team", teamDto);
+        return "team_join";
+    }
+
+    @PostMapping("/join")
+    public String join(TeamDto teamDto, @AuthenticationPrincipal User user) {
+        Member member;
+        Team team;
+
+        if (teamService.findById(teamDto.getId()).isPresent() && memberService.findByUsername(user.getUsername()).isPresent()) {
+            team = teamService.findById(teamDto.getId()).get();
+            member = memberService.findByUsername(user.getUsername()).get();
+            team.setMember(member);
+            member.setTeam(team);
+            teamService.save(team);
+            memberService.save(member);
+        }
+
+        return "redirect:/team";
     }
 
 }
