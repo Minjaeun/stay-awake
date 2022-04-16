@@ -9,10 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/team")
@@ -36,22 +33,22 @@ public class TeamController {
 
     @GetMapping("/create")
     public String createTeam(Model model) {
-        model.addAttribute("team",new Team());
+        model.addAttribute("team", new Team());
         return "team_create";
     }
 
     @PostMapping("/create")
-    public String create(Team team, @AuthenticationPrincipal User user){
-        if(memberService.findByUsername(user.getUsername()).isPresent()){
+    public String create(Team team, @AuthenticationPrincipal User user) {
+        if (memberService.findByUsername(user.getUsername()).isPresent()) {
             team.setMember(memberService.findByUsername(user.getUsername()).get());
         }
         teamService.save(team);
         return "redirect:/team";
     }
 
-    @PostMapping("/{id}")
-    public String createGroup(@RequestParam Long id, Model model) {
-        //TODO: 팀 생성 구현
+    @GetMapping("/{id}")
+    public String loadInfo(@PathVariable("id") String id, Model model) {
+        model.addAttribute("team", teamService.findById(id).get());
         return "team_info";
     }
 
