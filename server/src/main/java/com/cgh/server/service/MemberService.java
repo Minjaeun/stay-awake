@@ -23,12 +23,16 @@ public class MemberService implements UserDetailsService {
         memberRepository.save(new Member("admin", new BCryptPasswordEncoder().encode("1234"), Role.ROLE_ADMIN));
     }
 
-    public Optional<Member> findByUsername(String username){
+    public Optional<Member> findByUsername(String username) {
         return memberRepository.findByUsername(username);
     }
 
     public List<Member> findAll() {
         return new ArrayList<>(memberRepository.findAll());
+    }
+
+    public List<Member> findMemberByTeam(Team team) {
+        return new ArrayList<>(memberRepository.findMemberByTeam(team));
     }
 
     public Optional<Member> findById(Long id) {
