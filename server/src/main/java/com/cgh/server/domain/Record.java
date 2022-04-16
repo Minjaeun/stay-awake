@@ -13,7 +13,7 @@ public class Record {
     @OneToOne
     private Subject subject;
 
-    private int time;
+    private LocalDateTime start;
 
-    private LocalDateTime date;
+    private LocalDateTime end;
 }
