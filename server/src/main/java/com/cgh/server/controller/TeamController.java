@@ -51,9 +51,9 @@ public class TeamController {
         Member member;
         if (memberService.findByUsername(user.getUsername()).isPresent()) {
             member = memberService.findByUsername(user.getUsername()).get();
-            team.setMember(member);
+            team.addMember(member);
             teamService.save(team);
-            member.setTeam(team);
+            member.addTeam(team);
             memberService.save(member);
         }
         return "redirect:/team";
@@ -74,9 +74,9 @@ public class TeamController {
         if (teamService.findById(teamDto.getId()).isPresent() && memberService.findByUsername(user.getUsername()).isPresent()) {
             team = teamService.findById(teamDto.getId()).get();
             member = memberService.findByUsername(user.getUsername()).get();
-            team.setMember(member);
-            member.setTeam(team);
+            team.addMember(member);
             teamService.save(team);
+            member.addTeam(team);
             memberService.save(member);
         }
 
