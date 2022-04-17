@@ -1,6 +1,8 @@
 package com.cgh.server.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Team {
@@ -11,8 +13,12 @@ public class Team {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Member.class)
-    private Member member;
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Member.class)
+    private List<Member> member;
+
+    public Team() {
+        this.member = new ArrayList<>();
+    }
 
     public String getId() {
         return id;
@@ -30,13 +36,16 @@ public class Team {
         this.name = name;
     }
 
-
-    public Member getMember() {
+    public List<Member> getMember() {
         return member;
     }
 
-    public void setMember(Member member) {
+    public void setMember(List<Member> member) {
         this.member = member;
+    }
+
+    public void addMember(Member member) {
+        this.member.add(member);
     }
 
 }

@@ -21,8 +21,8 @@ public class Member implements UserDetails {
     @Column(nullable = false)
     private String username;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Team.class)
-    private Team team;
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Team.class)
+    private List<Team> team;
 
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Subject.class)
     private List<Subject> subjects = new ArrayList<>();
@@ -57,12 +57,16 @@ public class Member implements UserDetails {
         this.role = role;
     }
 
-    public Team getTeam() {
+    public List<Team> getTeam() {
         return team;
     }
 
-    public void setTeam(Team team) {
+    public void setTeam(List<Team> team) {
         this.team = team;
+    }
+
+    public void addTeam(Team team){
+        this.team.add(team);
     }
 
     public Long getId() {
