@@ -69,6 +69,10 @@ public class Member implements UserDetails {
         this.team.add(team);
     }
 
+    public void addSubject(Subject subject){
+        this.subjects.add(subject);
+    }
+
     public Long getId() {
         return id;
     }
