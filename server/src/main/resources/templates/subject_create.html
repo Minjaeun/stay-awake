@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>과목 추가</title>
+</head>
+<body>
+<form action="/room/create" method="post" th:object="${subject}">
+    <input type="text" name="username" placeholder="과목 이름" th:field="*{name}">
+    <button type="submit">생성</button>
+</form>
+</body>
+</html>

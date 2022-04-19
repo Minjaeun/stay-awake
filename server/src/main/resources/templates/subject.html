@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>과목 선택</title>
+</head>
+<body>
+<p><a th:href="@{room/create}">과목 추가</a></p>
+<table class="tb_col">
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+    </tr>
+    <tr th:each="subject : ${member.getSubjects()}">
+        <td><a th:text="*{subject.getName()}" th:href="@{'/room/'+*{subject.getId()}}"></a></td>
+    </tr>
+</table>
+</body>
+</html>
