@@ -1,4 +1,4 @@
-var pause = false;
+var pause = true;
 var count = 0;
 
 countTimers();
